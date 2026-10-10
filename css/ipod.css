@@ -324,8 +324,8 @@ body.zoomed .ipod { cursor: default; }
   height: 100%;
   transform: scaleY(-1);
   opacity: 0.35;
-  -webkit-mask-image: linear-gradient(to top, transparent 55%, #000);
-  mask-image: linear-gradient(to top, transparent 55%, #000);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 55%, #000);
+  mask-image: linear-gradient(to bottom, transparent 55%, #000);
 }
 .cf-cap {
   position: absolute;
