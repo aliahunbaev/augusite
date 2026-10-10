@@ -881,7 +881,6 @@
       if (zoomed) { ipod.style.transition = 'none'; ipod.style.transform = zoomTransform(); }
     });
 
-    setTimeout(() => { if (!zoomed && !animating) setHint('click to pick it up'); }, 2200);
   }
 
   /* ---------------- Start ---------------- */
