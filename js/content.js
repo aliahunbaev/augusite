@@ -23,6 +23,15 @@ window.SITE = {
   // Leave empty for a plain gradient backdrop.
   backdrops: [
     // { src: 'assets/backdrops/bench.webp', hand: 0.04, bg: '#706e71' },
+    // For now: Augu's Instagram photos (640px, so soft at full screen)
+    { src: 'assets/photos/ig-DeKnJh9y4Hc.webp', ar: 0.750, hand: 0, bg: '#3d4b40' },
+    { src: 'assets/photos/ig-DeFb-mgG0gt.webp', ar: 0.750, hand: 0, bg: '#4c4c37' },
+    { src: 'assets/photos/ig-Ddu-7J5DRze.webp', ar: 1.000, hand: 0, bg: '#954a5c' },
+    { src: 'assets/photos/ig-Dc8xLtBFrgW.webp', ar: 0.750, hand: 0, bg: '#774842' },
+    { src: 'assets/photos/ig-DcjJ6FgFmhM.webp', ar: 0.752, hand: 0, bg: '#74635c' },
+    { src: 'assets/photos/ig-Dbn4pTfliHg.webp', ar: 0.750, hand: 0, bg: '#877661' },
+    { src: 'assets/photos/ig-DbJUJ7HG_V5.webp', ar: 1.753, hand: 0, bg: '#8c8a8c' },
+    { src: 'assets/photos/ig-DagCp2_mzqN.webp', ar: 1.499, hand: 0, bg: '#4d4d53' },
   ],
 
   albums: [

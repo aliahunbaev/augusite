@@ -49,7 +49,9 @@
       window.__siteBackdropPick = pick;
       window.__siteBackdrop = pick.src.replace(/^.*\/|\.\w+$/g, '');
       var root = document.documentElement.style;
-      root.setProperty('--page-bg', 'url("' + pick.src + '")');
+      // Absolute, because a url() inside a custom property resolves against
+      // the stylesheet that uses it (css/), not this page
+      root.setProperty('--page-bg', 'url("' + new URL(pick.src, location.href).href + '")');
       if (pick.bg) root.setProperty('--page-bg-color', pick.bg);
 
       // The URL lives in a custom property the preload scanner can't see, so
