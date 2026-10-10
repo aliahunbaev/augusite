@@ -53,10 +53,18 @@ window.SITE = {
   // Cover Flow. `thumb` is shown in the flow (small, ~400px webp); `full`
   // loads only when a photo is opened. Either may be omitted.
   photos: [
-    // TODO: replace these placeholders with real photos
-    { thumb: '', full: '' }, { thumb: '', full: '' }, { thumb: '', full: '' },
-    { thumb: '', full: '' }, { thumb: '', full: '' }, { thumb: '', full: '' },
-    { thumb: '', full: '' }, { thumb: '', full: '' },
+    // From instagram.com/augu_2005, newest first
+    { thumb: 'assets/photos/thumb/ig-DeM3LsxS-eY.webp', full: 'assets/photos/ig-DeM3LsxS-eY.webp' },  // 2026-10-07 (reel cover)
+    { thumb: 'assets/photos/thumb/ig-DeKnJh9y4Hc.webp', full: 'assets/photos/ig-DeKnJh9y4Hc.webp' },  // 2026-10-06
+    { thumb: 'assets/photos/thumb/ig-DeFb-mgG0gt.webp', full: 'assets/photos/ig-DeFb-mgG0gt.webp' },  // 2026-10-04
+    { thumb: 'assets/photos/thumb/ig-Ddu-7J5DRze.webp', full: 'assets/photos/ig-Ddu-7J5DRze.webp' },  // 2026-09-25
+    { thumb: 'assets/photos/thumb/ig-Dc8xLtBFrgW.webp', full: 'assets/photos/ig-Dc8xLtBFrgW.webp' },  // 2026-09-06
+    { thumb: 'assets/photos/thumb/ig-Dct9wkXyBKk.webp', full: 'assets/photos/ig-Dct9wkXyBKk.webp' },  // 2026-08-31 (reel cover)
+    { thumb: 'assets/photos/thumb/ig-DcjJ6FgFmhM.webp', full: 'assets/photos/ig-DcjJ6FgFmhM.webp' },  // 2026-08-27
+    { thumb: 'assets/photos/thumb/ig-Dbn4pTfliHg.webp', full: 'assets/photos/ig-Dbn4pTfliHg.webp' },  // 2026-08-04
+    { thumb: 'assets/photos/thumb/ig-DbJUJ7HG_V5.webp', full: 'assets/photos/ig-DbJUJ7HG_V5.webp' },  // 2026-07-23
+    { thumb: 'assets/photos/thumb/ig-DagCp2_mzqN.webp', full: 'assets/photos/ig-DagCp2_mzqN.webp' },  // 2026-07-07
+    { thumb: 'assets/photos/thumb/ig-DaYCdKgSx7J.webp', full: 'assets/photos/ig-DaYCdKgSx7J.webp' },  // 2026-07-04 (reel cover)
   ],
 
   // Merch without Shopify: each product opens its own buy link.
