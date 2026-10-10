@@ -10,11 +10,13 @@
   const wheel = $('wheel');
   const hint = $('hint');
 
-  // The iPod's own layout size; everything else is a transform of it
-  const W = 320, H = 530;
+  // The device within the hand photo (assets/hand.webp, 1024 x 1536), in
+  // photo pixels: its centre, its size along its own axes, and how far it
+  // leans. Raising the iPod turns it upright by TILT about that centre.
+  const DEV = { cx: 458, cy: 408, w: 221, h: 364 };
+  const TILT = 11.8;
   const isTouch = matchMedia('(hover: none) and (pointer: coarse), (max-width: 600px)').matches;
 
-  if (C.finish === 'black') ipod.classList.add('black');
 
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -751,19 +753,34 @@
   const CREEP_MAX = 0.92; // the creep approaches rest; a click completes it
 
   // Fit the raised iPod to the window, never above life-ish size
+  // Every pose is the same transform list, so CSS can interpolate between
+  // them: put the device centre at (x, y), lean it, and scale the photo.
+  const pose = (x, y, rot, scale) =>
+    `translate(${x}px, ${y}px) rotate(${rot}deg) scale(${scale}) translate(${-DEV.cx}px, ${-DEV.cy}px)`;
+
+  // Raised: the device fills most of the window, upright
+  // (fitted by the device's bounding box at its raised angle)
   function zoomScale() {
-    return Math.max(0.55, Math.min(1.6, (innerHeight - 32) / H, (innerWidth - 24) / W));
+    const t = TILT * Math.PI / 180;
+    const bw = DEV.w * Math.cos(t) + DEV.h * Math.sin(t);
+    const bh = DEV.h * Math.cos(t) + DEV.w * Math.sin(t);
+    return Math.min((innerHeight * 0.94) / bh, (innerWidth * 0.94) / bw, 3.2);
+  }
+  // Resting in the lap: the device about a third of the window tall, centred
+  // on the backdrop's lap. q = 0 is barely peeking, 1 is fully up.
+  const restScale = (q) => (innerHeight * 0.3 / DEV.h) * (0.92 + 0.1 * q);
+  function restCentre(q) {
+    return {
+      x: innerWidth / 2 + handShift(),
+      y: innerHeight * 0.72 + (1 - q) * innerHeight * 0.55,
+    };
   }
   function restTransform(q) {
-    const s = 0.9 + 0.08 * q;
-    const visible = (0.18 + q * 0.5) * H * s;   // how much pokes above the bottom edge
-    const cy = innerHeight + (H * s) / 2 - visible;
-    const rot = 13 - q * 4;
-    const x = innerWidth / 2 - W / 2 + handShift() + 30 * (1 - q);
-    return `translate(${x}px, ${cy - H / 2}px) rotate(${rot}deg) scale(${s})`;
+    const c = restCentre(q);
+    return pose(c.x, c.y, 0, restScale(q));
   }
   function zoomTransform() {
-    return `translate(${innerWidth / 2 - W / 2}px, ${innerHeight / 2 - H / 2}px) rotate(0deg) scale(${zoomScale()})`;
+    return pose(innerWidth / 2, innerHeight / 2, TILT, zoomScale());
   }
 
   function setHint(text, ms) {
@@ -817,8 +834,10 @@
     ipod.style.transform = restTransform(0);
     addEventListener('mousemove', (e) => {
       if (zoomed || animating) return;
-      const r = ipod.getBoundingClientRect();
-      if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
+      // Over the device itself → fully summoned. (The photo's box is mostly
+      // transparent arm and air, so test against the device, not the box.)
+      const c = restCentre(p), s = restScale(p);
+      if (Math.abs(e.clientX - c.x) < (DEV.w * s) / 2 + 24 && Math.abs(e.clientY - c.y) < (DEV.h * s) / 2 + 24) {
         target = 1;
         return;
       }
@@ -845,7 +864,7 @@
     document.addEventListener('click', (e) => {
       if (animating || e.target.closest('.consent')) return;
       if (!zoomed) { zoomIn(); return; }
-      if (!e.target.closest('.ipod')) zoomOut();
+      if (!e.target.closest('.screen, .wheel')) zoomOut();
     });
 
     addEventListener('resize', () => {

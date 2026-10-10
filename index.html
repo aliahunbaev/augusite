@@ -76,16 +76,19 @@
 <body>
   <div class="backdrop" id="backdrop"></div>
 
+  <!-- The photo is the iPod. The live screen and an invisible click wheel are
+       laid over the device in it, in the photo's own pixel coordinates, so
+       the whole thing moves and scales as one piece. -->
   <div class="ipod" id="ipod">
-    <div class="bezel">
-      <div class="screen">
-        <div class="screen-header">
-          <span class="hdr-play" id="hdrPlay"></span>
-          <span class="hdr-title" id="hdrTitle"></span>
-          <span class="hdr-battery"><i></i></span>
-        </div>
-        <div class="screen-body" id="screenBody"></div>
+    <img class="hand" src="assets/hand.webp" alt="" draggable="false" fetchpriority="high">
+
+    <div class="screen">
+      <div class="screen-header">
+        <span class="hdr-play" id="hdrPlay"></span>
+        <span class="hdr-title" id="hdrTitle"></span>
+        <span class="hdr-battery"><i></i></span>
       </div>
+      <div class="screen-body" id="screenBody"></div>
     </div>
 
     <div class="wheel" id="wheel">

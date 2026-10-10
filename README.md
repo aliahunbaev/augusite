@@ -15,8 +15,21 @@ js/content.js        ALL content and settings — the only file you edit
 js/integrations.js   YouTube / Bandsintown / Shopify / GA4, each optional
 js/ipod.js           screens, click wheel, audio, pick-up animation
 css/ipod.css         the iPod and its screens
+assets/hand.webp     the photo of a hand holding the iPod
 assets/              backdrops, covers, music, photos (+ photos/thumb), merch
 ```
+
+## The hand photo
+
+The iPod is `assets/hand.webp`, a 1024×1536 photo with a transparent
+background. The live screen and an invisible click wheel are laid over the
+device in it, positioned in the photo's own pixels:
+
+- `.screen` and `.wheel` in `css/ipod.css` cover the photo's screen and wheel
+- `DEV` and `TILT` in `js/ipod.js` give the device's centre, size and lean,
+  which set where it rests in the lap and how it turns upright when raised
+
+If you swap in a different photo, re-measure those numbers.
 
 ## Content
 

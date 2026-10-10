@@ -14,9 +14,6 @@ window.SITE = {
   artist: 'Augu',
   description: 'Augu — official site.',
 
-  // 'white' or 'black' — the iPod's finish
-  finish: 'white',
-
   // First-person photos (a lap, a desk, a train seat...). One is dealt per
   // visit from a shuffled bag, so every photo shows before any repeats.
   //   src   the image
