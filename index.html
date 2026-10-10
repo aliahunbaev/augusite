@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Augu</title>
+  <meta name="description" content="Augu — official site.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Augu">
+  <meta property="og:description" content="Augu — official site.">
+  <!-- <meta property="og:image" content="https://YOUR-DOMAIN/assets/og-image.jpg"> 1200x630 -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script src="js/content.js"></script>
+
+  <!-- Every visit is dealt one backdrop before the page paints, so only the
+       chosen photo is ever downloaded. A shuffled "bag" in localStorage shows
+       every photo once before any repeats, and never the same one twice in a
+       row across a reshuffle. -->
+  <script>
+    (function () {
+      var list = (window.SITE.backdrops || []).map(function (b) {
+        return typeof b === 'string' ? { src: b } : b;
+      });
+      if (!list.length) return;
+
+      var KEY = 'site-backdrops', store = null, bag = [], last = -1;
+      try { store = localStorage; } catch (e) {}
+      if (store) {
+        try {
+          var saved = JSON.parse(store.getItem(KEY)) || {};
+          bag = (saved.bag || []).filter(function (i) { return i < list.length; });
+          last = typeof saved.last === 'number' ? saved.last : -1;
+        } catch (e) {}
+      }
+      if (!bag.length) {
+        for (var i = 0; i < list.length; i++) bag.push(i);
+        for (var j = bag.length - 1; j > 0; j--) {
+          var k = Math.floor(Math.random() * (j + 1)), t = bag[j]; bag[j] = bag[k]; bag[k] = t;
+        }
+        if (bag.length > 1 && bag[bag.length - 1] === last) {
+          bag[bag.length - 1] = bag[0]; bag[0] = last;
+        }
+      }
+      var idx = bag.pop();
+      if (store) { try { store.setItem(KEY, JSON.stringify({ bag: bag, last: idx })); } catch (e) {} }
+
+      var pick = list[idx];
+      window.__siteBackdropPick = pick;
+      window.__siteBackdrop = pick.src.replace(/^.*\/|\.\w+$/g, '');
+      var root = document.documentElement.style;
+      root.setProperty('--page-bg', 'url("' + pick.src + '")');
+      if (pick.bg) root.setProperty('--page-bg-color', pick.bg);
+
+      // The URL lives in a custom property the preload scanner can't see, so
+      // ask for it explicitly at high priority.
+      var pre = document.createElement('link');
+      pre.rel = 'preload'; pre.as = 'image'; pre.href = pick.src;
+      pre.fetchPriority = 'high';
+      document.head.appendChild(pre);
+
+      // Warm the next visit's photo once this one has loaded
+      var next = bag.length ? list[bag[bag.length - 1]] : null;
+      if (next) addEventListener('load', function () {
+        setTimeout(function () {
+          var l = document.createElement('link');
+          l.rel = 'prefetch'; l.as = 'image'; l.href = next.src;
+          document.head.appendChild(l);
+        }, 1500);
+      });
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/ipod.css">
+</head>
+<body>
+  <div class="backdrop" id="backdrop"></div>
+
+  <div class="ipod" id="ipod">
+    <div class="bezel">
+      <div class="screen">
+        <div class="screen-header">
+          <span class="hdr-play" id="hdrPlay"></span>
+          <span class="hdr-title" id="hdrTitle"></span>
+          <span class="hdr-battery"><i></i></span>
+        </div>
+        <div class="screen-body" id="screenBody"></div>
+      </div>
+    </div>
+
+    <div class="wheel" id="wheel">
+      <span class="wl wl-menu">MENU</span>
+      <span class="wl wl-next"><svg width="18" height="12" viewBox="0 0 18 12"><polygon points="0,0 9,6 0,12"/><polygon points="9,0 18,6 9,12"/></svg></span>
+      <span class="wl wl-prev"><svg width="18" height="12" viewBox="0 0 18 12"><polygon points="9,0 9,12 0,6"/><polygon points="18,0 18,12 9,6"/></svg></span>
+      <span class="wl wl-play"><svg width="20" height="12" viewBox="0 0 20 12"><polygon points="0,0 7,6 0,12"/><rect x="10" width="3" height="12"/><rect x="16" width="3" height="12"/></svg></span>
+      <button class="center" id="center" aria-label="Select"></button>
+    </div>
+  </div>
+
+  <div class="hint" id="hint"></div>
+
+  <script src="js/integrations.js"></script>
+  <script src="js/ipod.js"></script>
+</body>
+</html>
