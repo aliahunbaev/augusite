@@ -269,6 +269,7 @@ body.zoomed .backdrop {
 }
 .np.vol .np-diamond { display: none; }
 .np-note { font-size: 10.5px; color: #a33; text-align: center; margin-bottom: 4px; }
+.np-note.preview { color: #888; }
 
 /* ---------- Cover Flow ---------- */
 

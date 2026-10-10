@@ -34,27 +34,49 @@ window.SITE = {
     { src: 'assets/photos/ig-DagCp2_mzqN.webp', ar: 1.499, hand: 0, bg: '#4d4d53' },
   ],
 
+  // From Apple Music (artist 1720582590). Tracks are Apple's official
+  // 30-second previews, streamed from Apple; `link` opens the full song.
+  // To use full songs, swap `file` for e.g. 'assets/music/maluv.mp3' and
+  // drop `preview: true`.
   albums: [
     {
-      title: 'Album Title',               // TODO
-      year: '2026',
-      cover: '',                           // e.g. 'assets/covers/album.webp'
+      title: 'In Blue.',
+      year: '2024',
+      cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/01/cf/4f01cf86-6c38-d6bc-6518-323d596a84e8/artwork.jpg/600x600bb.jpg',
+      link: 'https://music.apple.com/us/album/in-blue/1764701993',
       tracks: [
-        { title: 'Track One', file: '' },  // e.g. 'assets/music/track-one.mp3'
-        { title: 'Track Two', file: '' },
-        { title: 'Track Three', file: '' },
-        { title: 'Track Four', file: '' },
-        { title: 'Track Five', file: '' },
+        { title: 'feel.', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9f/0b/27/9f0b27c7-ff6a-e852-e618-e04faeeac840/mzaf_6329814366344089453.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/feel/1764701993?i=1764701994' },
+        { title: 'cruel.', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/14/ce/a2/14cea213-868d-17a7-575b-c7969305eae8/mzaf_3896403372188126929.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/cruel/1764701993?i=1764701995' },
+        { title: 'BLUE', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a8/e0/ba/a8e0baeb-6407-d350-b818-3a4862ef91d0/mzaf_15520978721779375358.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/blue/1764701993?i=1764701996' },
+        { title: 'SmrrNights', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d4/4c/06/d44c065d-d080-1b91-9eda-aaf5dd822eb0/mzaf_11396105729854474492.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/smrrnights/1764701993?i=1764701997' },
+        { title: 'LONG4YAH', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6a/e4/eb/6ae4eb58-c3d4-7ba8-e1f0-c2571f094e46/mzaf_7178924615766466275.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/long4yah/1764701993?i=1764701998' },
+        { title: 'rain', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ec/5c/87/ec5c8760-d5b4-fcfd-62ad-50dd0c8fdbcf/mzaf_1617437628582182573.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/rain/1764701993?i=1764701999' },
+        { title: 'moss', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a5/36/ce/a536ce05-85c5-724d-c031-6e07960dbeee/mzaf_15748909786829995024.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/moss/1764701993?i=1764702000' },
       ],
     },
     {
-      title: 'Debut Album',                // TODO
-      year: '2025',
-      cover: '',
+      title: 'Singles',
+      year: '2023–2026',
+      cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/6f/a6/ff6fa6b0-96fd-face-96d0-fc3380f29fec/artwork.jpg/600x600bb.jpg',
+      link: 'https://music.apple.com/us/artist/augu/1720582590',
       tracks: [
-        { title: 'Intro', file: '' },
-        { title: 'Second Song', file: '' },
-        { title: 'Third Song', file: '' },
+        { title: 'FuckTheWorld (Demo)', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f5/9a/36/f59a36ec-d4d7-c55f-f66c-3460c551de66/mzaf_6479365299739703502.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/fucktheworld-demo/6816763031?i=6816763033', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ff/6f/a6/ff6fa6b0-96fd-face-96d0-fc3380f29fec/artwork.jpg/600x600bb.jpg' },
+        { title: 'SawYaCarr/douluvme?', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/87/c7/1d/87c71d4b-d4c4-3335-6b4f-e6bd3bbb03f4/mzaf_7910272335217240499.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/sawyacarr-douluvme/6786703954?i=6786703955', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/75/cc/14/75cc143c-3ce1-626b-5fd2-0161932ac3fd/artwork.jpg/600x600bb.jpg' },
+        { title: 'Broke Bike (feat. Kaleb Reyna)', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d9/87/f4/d987f4ea-73e3-16df-ddc7-a464619442fa/mzaf_16320165982304417420.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/broke-bike-feat-kaleb-reyna/6777515678?i=6777515679', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cb/26/0c/cb260ca4-ae50-a25b-5c78-5c9eb978cac1/artwork.jpg/600x600bb.jpg' },
+        { title: 'Tears', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6c/ca/4d/6cca4d53-cf50-b86c-1f13-d19d05aed98c/mzaf_2539363919044779328.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/tears/1888072800?i=1888072801', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/23/63/6f/23636f52-174f-453c-9080-69f7a970ddab/artwork.jpg/600x600bb.jpg' },
+        { title: 'MaLuv', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6a/90/0c/6a900ce5-da41-6f64-8a8a-4f9a54d27796/mzaf_17242907595601587970.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/maluv/1884831257?i=1884831258', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ce/50/3f/ce503f0f-165f-be25-ce64-b96b7aa46c5f/artwork.jpg/600x600bb.jpg' },
+        { title: 'PIG', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bc/83/1a/bc831a49-449f-b455-834c-2eca4d562669/mzaf_8044197710188327245.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/pig/1826235504?i=1826235506', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5c/2a/94/5c2a94e0-c09e-593c-1412-d2467159edb2/artwork.jpg/600x600bb.jpg' },
+        { title: 'rain', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/77/77/6d/77776dfc-2f4f-79c4-10c2-16fdd5a6e76e/mzaf_13463822485974820110.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/rain/1764181243?i=1764181244', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/bd/4c/cf/bd4ccfcc-d565-9592-def2-38fc97ec19e5/artwork.jpg/600x600bb.jpg' },
+        { title: '4Door', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/3c/55/e7/3c55e724-5da9-52f9-4d58-9b89b3f050a7/mzaf_1502756075921453881.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/4door/1720644628?i=1720644629', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/9d/2f/22/9d2f22a7-77c7-11f1-f9a0-d382a0811761/artwork.jpg/600x600bb.jpg' },
+      ],
+    },
+    {
+      title: 'Features',
+      year: '',
+      cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/39/79/d9/3979d9b9-1fd8-5f0e-bb0f-47998df4122c/artwork.jpg/600x600bb.jpg',
+      tracks: [
+        { title: 'GIVE IT AWAY (feat. Atgsupreme & Augu)', artist: 'Kaleb Reyna', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d0/a0/45/d0a04594-a106-8fa0-ada8-6cb599675cc6/mzaf_17502817914915763736.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/give-it-away-feat-atgsupreme-augu/1759747159?i=1759747160', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/39/79/d9/3979d9b9-1fd8-5f0e-bb0f-47998df4122c/artwork.jpg/600x600bb.jpg' },
+        { title: 'empath (feat. Augu)', artist: 'grant parris & oku', file: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a5/d4/7c/a5d47c02-0e22-9c4e-6e5a-3b03edbd72c7/mzaf_14152914683382564839.plus.aac.p.m4a', preview: true, link: 'https://music.apple.com/us/album/empath-feat-augu/1888341693?i=1888341697', cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c2/ea/5d/c2ea5d05-956b-d472-6abf-32359df9fa14/artwork.jpg/600x600bb.jpg' },
       ],
     },
   ],
@@ -117,7 +139,7 @@ window.SITE = {
     { label: 'YouTube', url: 'https://youtube.com/' },
     { label: 'Email', url: 'mailto:hello@example.com' },
     { label: 'Spotify', url: 'https://open.spotify.com/' },
-    { label: 'Apple Music', url: 'https://music.apple.com/' },
+    { label: 'Apple Music', url: 'https://music.apple.com/us/artist/augu/1720582590' },
   ],
 
   integrations: {

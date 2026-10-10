@@ -99,8 +99,8 @@
     }
     if ('mediaSession' in navigator && window.MediaMetadata) {
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: track.title, artist: C.artist, album: album.title,
-        artwork: album.cover ? [{ src: album.cover }] : [],
+        title: track.title, artist: track.artist || C.artist, album: album.title,
+        artwork: (track.cover || album.cover) ? [{ src: track.cover || album.cover }] : [],
       });
     }
     updatePlayIcon();
@@ -340,11 +340,16 @@
       sub: [a.year, `${a.tracks.length} ${a.tracks.length === 1 ? 'song' : 'songs'}`].filter(Boolean).join(' · '),
       chev: true, thumb: a.cover, run: () => push(albumMenu(a)),
     }));
-    const s = listScreen('Music', albums, 'No music yet');
+    const s = listScreen('Music', albums, 'No music yet', { artwork: true });
     // "Now Playing" leads the menu once something has been played
     const render = s.render.bind(s);
     s.render = (el) => {
-      const np = { label: 'Now Playing', chev: true, run: () => push(nowPlayingScreen()) };
+      const t = player.album && player.album.tracks[player.index];
+      const np = {
+        label: 'Now Playing', chev: true,
+        thumb: t ? t.cover || player.album.cover : '',
+        run: () => push(nowPlayingScreen()),
+      };
       s.items = player.album ? [np, ...albums] : albums.slice();
       render(el);
     };
@@ -352,10 +357,14 @@
   }
 
   function albumMenu(album) {
-    return listScreen(album.title, album.tracks.map((t, i) => ({
+    const rows = album.tracks.map((t, i) => ({
       label: t.title,
+      sub: t.artist || '',
       run: () => { playTrack(album, i); push(nowPlayingScreen()); },
-    })));
+    }));
+    // Previews are 30 seconds; the full songs live on the streaming services
+    if (album.link) rows.push({ label: 'Full songs on Apple Music', chev: true, run: openUrl(album.link) });
+    return listScreen(album.title, rows);
   }
 
   function nowPlayingScreen() {
@@ -368,16 +377,17 @@
         const t = a.tracks[player.index];
         this.el.innerHTML = `<div class="np">
           <div class="np-top">
-            <div class="np-art">${art(a.cover, a.title, a.title)}</div>
+            <div class="np-art">${art(t.cover || a.cover, a.title, a.title)}</div>
             <div class="np-info">
               <div class="np-title">${esc(t.title)}</div>
-              <div class="np-artist">${esc(C.artist)}</div>
+              <div class="np-artist">${esc(t.artist || C.artist)}</div>
               <div class="np-album">${esc(a.title)}</div>
               <div class="np-count">${player.index + 1} of ${a.tracks.length}</div>
             </div>
           </div>
           <div class="np-bottom">
-            ${player.error ? `<div class="np-note">${esc(player.error)}</div>` : ''}
+            ${player.error ? `<div class="np-note">${esc(player.error)}</div>`
+              : t.preview ? '<div class="np-note preview">Preview · full song on Apple Music</div>' : ''}
             <div class="np-times"><span class="np-cur">0:00</span><span class="np-rem">-0:00</span></div>
             <div class="np-bar"><div class="np-fill"></div><div class="np-diamond"></div></div>
           </div>
