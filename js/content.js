@@ -101,10 +101,7 @@ window.SITE = {
   // Merch without Shopify: each product opens its own buy link.
   // (With Shopify configured below, the live catalog and cart replace this.)
   merch: [
-    // TODO
-    { title: 'Tour Tee', price: '$35', image: '', sizes: ['S', 'M', 'L', 'XL'], url: '', description: 'Heavyweight cotton tee.' },
-    { title: 'Hoodie', price: '$70', image: '', sizes: ['M', 'L', 'XL'], url: '', description: 'Garment-dyed hoodie.' },
-    { title: 'Vinyl', price: '$30', image: '', sizes: [], url: '', description: '12" LP.' },
+    // { title: 'Tour Tee', price: '$35', image: 'assets/merch/tee.webp', sizes: ['S', 'M', 'L'], url: 'https://...', description: '...' },
   ],
 
   // Videos without the YouTube API — the id is the part after "v=" in a link
@@ -114,8 +111,7 @@ window.SITE = {
 
   // Shows without Bandsintown. Dates as YYYY-MM-DD; past dates are hidden.
   shows: [
-    // TODO
-    { venue: "Baby's All Right", city: 'Brooklyn, NY', date: '2026-12-12', url: '' },
+    // { venue: "Baby's All Right", city: 'Brooklyn, NY', date: '2026-12-12', url: 'https://...' },
   ],
 
   // Newest first
@@ -124,22 +120,17 @@ window.SITE = {
   ],
 
   about: {
-    photo: '',                             // e.g. 'assets/photos/about.webp'
+    photo: 'assets/photos/ig-DeKnJh9y4Hc.webp',
     bio: [
-      'Write a short bio here.',           // TODO
-      'Add more paragraphs as separate strings.',
+      // TODO: a short bio from Augu, one paragraph per string
     ],
     credit: '',                            // e.g. 'website by ...'
   },
 
   contact: [
-    // TODO
-    { label: 'Instagram', url: 'https://instagram.com/' },
-    { label: 'TikTok', url: 'https://tiktok.com/' },
-    { label: 'YouTube', url: 'https://youtube.com/' },
-    { label: 'Email', url: 'mailto:hello@example.com' },
-    { label: 'Spotify', url: 'https://open.spotify.com/' },
+    { label: 'Instagram', url: 'https://www.instagram.com/augu_2005/' },
     { label: 'Apple Music', url: 'https://music.apple.com/us/artist/augu/1720582590' },
+    // TODO: add Spotify, YouTube, TikTok and an email when you have them
   ],
 
   integrations: {
