@@ -148,9 +148,9 @@
     return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
   };
 
-  // Putting the iPod down stops whatever is playing
-  function stopPlayback() {
-    audio.pause();
+  // Putting the iPod down keeps the music going, like a real one in your
+  // lap. A video can't play off screen, so that alone is closed.
+  function stopVideo() {
     if (current().kind === 'video') back(true);
   }
 
@@ -822,7 +822,7 @@
     zoomed = false;
     animating = true;
     D.analytics.track('zoom_out');
-    stopPlayback();
+    stopVideo();
     document.body.classList.remove('zoomed');
     ipod.style.transition = 'transform 1.6s cubic-bezier(.4,0,.2,1)';
     p = target = 1;
