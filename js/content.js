@@ -22,16 +22,20 @@ window.SITE = {
   //   bg    the photo's mid-tone, shown while it loads
   // Leave empty for a plain gradient backdrop.
   backdrops: [
-    // { src: 'assets/backdrops/bench.webp', hand: 0.04, bg: '#706e71' },
-    // For now: Augu's Instagram photos (640px, so soft at full screen)
-    { src: 'assets/photos/ig-DeKnJh9y4Hc.webp', ar: 0.750, hand: 0, bg: '#3d4b40' },
-    { src: 'assets/photos/ig-DeFb-mgG0gt.webp', ar: 0.750, hand: 0, bg: '#4c4c37' },
-    { src: 'assets/photos/ig-Ddu-7J5DRze.webp', ar: 1.000, hand: 0, bg: '#954a5c' },
-    { src: 'assets/photos/ig-Dc8xLtBFrgW.webp', ar: 0.750, hand: 0, bg: '#774842' },
-    { src: 'assets/photos/ig-DcjJ6FgFmhM.webp', ar: 0.752, hand: 0, bg: '#74635c' },
-    { src: 'assets/photos/ig-Dbn4pTfliHg.webp', ar: 0.750, hand: 0, bg: '#877661' },
-    { src: 'assets/photos/ig-DbJUJ7HG_V5.webp', ar: 1.753, hand: 0, bg: '#8c8a8c' },
-    { src: 'assets/photos/ig-DagCp2_mzqN.webp', ar: 1.499, hand: 0, bg: '#4d4d53' },
+    // Augu's own photos. The first three are first-person lap shots, with
+    // `pos` keeping the legs in frame and `hand` putting the iPod over the lap.
+    { src: 'assets/backdrops/augu-02.webp', ar: 0.750, hand: 0.1, bg: '#928471', pos: 'center 100%' },
+    { src: 'assets/backdrops/augu-20.webp', ar: 0.750, hand: 0.05, bg: '#746759', pos: 'center 100%' },
+    { src: 'assets/backdrops/augu-25.webp', ar: 1.333, hand: 0.0, bg: '#636564', pos: 'center 100%' },
+    { src: 'assets/backdrops/augu-01.webp', ar: 1.333, hand: 0, bg: '#50787a' },
+    { src: 'assets/backdrops/augu-06.webp', ar: 1.333, hand: 0, bg: '#75783c' },
+    { src: 'assets/backdrops/augu-07.webp', ar: 1.333, hand: 0, bg: '#5d90be' },
+    { src: 'assets/backdrops/augu-09.webp', ar: 1.333, hand: 0, bg: '#a6b0b8' },
+    { src: 'assets/backdrops/augu-10.webp', ar: 1.333, hand: 0, bg: '#7f7e7d' },
+    { src: 'assets/backdrops/augu-11.webp', ar: 1.333, hand: 0, bg: '#6f6356' },
+    { src: 'assets/backdrops/augu-12.webp', ar: 1.333, hand: 0, bg: '#638a9a' },
+    { src: 'assets/backdrops/augu-19.webp', ar: 1.333, hand: 0, bg: '#7d94a5' },
+    { src: 'assets/backdrops/augu-22.webp', ar: 1.333, hand: 0, bg: '#4e635b' },
   ],
 
   // From Apple Music (artist 1720582590). Tracks are Apple's official
@@ -84,18 +88,31 @@ window.SITE = {
   // Cover Flow. `thumb` is shown in the flow (small, ~400px webp); `full`
   // loads only when a photo is opened. Either may be omitted.
   photos: [
-    // From instagram.com/augu_2005, newest first
-    { thumb: 'assets/photos/thumb/ig-DeM3LsxS-eY.webp', full: 'assets/photos/ig-DeM3LsxS-eY.webp' },  // 2026-10-07 (reel cover)
-    { thumb: 'assets/photos/thumb/ig-DeKnJh9y4Hc.webp', full: 'assets/photos/ig-DeKnJh9y4Hc.webp' },  // 2026-10-06
-    { thumb: 'assets/photos/thumb/ig-DeFb-mgG0gt.webp', full: 'assets/photos/ig-DeFb-mgG0gt.webp' },  // 2026-10-04
-    { thumb: 'assets/photos/thumb/ig-Ddu-7J5DRze.webp', full: 'assets/photos/ig-Ddu-7J5DRze.webp' },  // 2026-09-25
-    { thumb: 'assets/photos/thumb/ig-Dc8xLtBFrgW.webp', full: 'assets/photos/ig-Dc8xLtBFrgW.webp' },  // 2026-09-06
-    { thumb: 'assets/photos/thumb/ig-Dct9wkXyBKk.webp', full: 'assets/photos/ig-Dct9wkXyBKk.webp' },  // 2026-08-31 (reel cover)
-    { thumb: 'assets/photos/thumb/ig-DcjJ6FgFmhM.webp', full: 'assets/photos/ig-DcjJ6FgFmhM.webp' },  // 2026-08-27
-    { thumb: 'assets/photos/thumb/ig-Dbn4pTfliHg.webp', full: 'assets/photos/ig-Dbn4pTfliHg.webp' },  // 2026-08-04
-    { thumb: 'assets/photos/thumb/ig-DbJUJ7HG_V5.webp', full: 'assets/photos/ig-DbJUJ7HG_V5.webp' },  // 2026-07-23
-    { thumb: 'assets/photos/thumb/ig-DagCp2_mzqN.webp', full: 'assets/photos/ig-DagCp2_mzqN.webp' },  // 2026-07-07
-    { thumb: 'assets/photos/thumb/ig-DaYCdKgSx7J.webp', full: 'assets/photos/ig-DaYCdKgSx7J.webp' },  // 2026-07-04 (reel cover)
+    { thumb: 'assets/photos/thumb/augu-01.webp', full: 'assets/photos/augu-01.webp' },
+    { thumb: 'assets/photos/thumb/augu-02.webp', full: 'assets/photos/augu-02.webp' },
+    { thumb: 'assets/photos/thumb/augu-03.webp', full: 'assets/photos/augu-03.webp' },
+    { thumb: 'assets/photos/thumb/augu-04.webp', full: 'assets/photos/augu-04.webp' },
+    { thumb: 'assets/photos/thumb/augu-05.webp', full: 'assets/photos/augu-05.webp' },
+    { thumb: 'assets/photos/thumb/augu-06.webp', full: 'assets/photos/augu-06.webp' },
+    { thumb: 'assets/photos/thumb/augu-07.webp', full: 'assets/photos/augu-07.webp' },
+    { thumb: 'assets/photos/thumb/augu-08.webp', full: 'assets/photos/augu-08.webp' },
+    { thumb: 'assets/photos/thumb/augu-09.webp', full: 'assets/photos/augu-09.webp' },
+    { thumb: 'assets/photos/thumb/augu-10.webp', full: 'assets/photos/augu-10.webp' },
+    { thumb: 'assets/photos/thumb/augu-11.webp', full: 'assets/photos/augu-11.webp' },
+    { thumb: 'assets/photos/thumb/augu-12.webp', full: 'assets/photos/augu-12.webp' },
+    { thumb: 'assets/photos/thumb/augu-13.webp', full: 'assets/photos/augu-13.webp' },
+    { thumb: 'assets/photos/thumb/augu-14.webp', full: 'assets/photos/augu-14.webp' },
+    { thumb: 'assets/photos/thumb/augu-15.webp', full: 'assets/photos/augu-15.webp' },
+    { thumb: 'assets/photos/thumb/augu-16.webp', full: 'assets/photos/augu-16.webp' },
+    { thumb: 'assets/photos/thumb/augu-17.webp', full: 'assets/photos/augu-17.webp' },
+    { thumb: 'assets/photos/thumb/augu-18.webp', full: 'assets/photos/augu-18.webp' },
+    { thumb: 'assets/photos/thumb/augu-19.webp', full: 'assets/photos/augu-19.webp' },
+    { thumb: 'assets/photos/thumb/augu-20.webp', full: 'assets/photos/augu-20.webp' },
+    { thumb: 'assets/photos/thumb/augu-21.webp', full: 'assets/photos/augu-21.webp' },
+    { thumb: 'assets/photos/thumb/augu-22.webp', full: 'assets/photos/augu-22.webp' },
+    { thumb: 'assets/photos/thumb/augu-23.webp', full: 'assets/photos/augu-23.webp' },
+    { thumb: 'assets/photos/thumb/augu-24.webp', full: 'assets/photos/augu-24.webp' },
+    { thumb: 'assets/photos/thumb/augu-25.webp', full: 'assets/photos/augu-25.webp' },
   ],
 
   // Merch without Shopify: each product opens its own buy link.
@@ -120,7 +137,7 @@ window.SITE = {
   ],
 
   about: {
-    photo: 'assets/photos/ig-DeKnJh9y4Hc.webp',
+    photo: 'assets/photos/augu-24.webp',
     bio: [
       // TODO: a short bio from Augu, one paragraph per string
     ],

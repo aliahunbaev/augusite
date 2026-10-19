@@ -53,6 +53,7 @@
       // the stylesheet that uses it (css/), not this page
       root.setProperty('--page-bg', 'url("' + new URL(pick.src, location.href).href + '")');
       if (pick.bg) root.setProperty('--page-bg-color', pick.bg);
+      if (pick.pos) root.setProperty('--page-bg-pos', pick.pos);
 
       // The URL lives in a custom property the preload scanner can't see, so
       // ask for it explicitly at high priority.
