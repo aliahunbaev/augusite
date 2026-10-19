@@ -8,7 +8,6 @@
   const hdrTitle = $('hdrTitle');
   const hdrPlay = $('hdrPlay');
   const wheel = $('wheel');
-  const hint = $('hint');
 
   // The device within the hand photo (assets/hand.webp, 1024 x 1536), in
   // photo pixels: its centre, its size along its own axes, and how far it
@@ -793,13 +792,6 @@
     return pose(innerWidth / 2, innerHeight / 2, TILT, zoomScale());
   }
 
-  function setHint(text, ms) {
-    hint.textContent = text;
-    hint.classList.add('show');
-    clearTimeout(setHint.t);
-    if (ms) setHint.t = setTimeout(() => hint.classList.remove('show'), ms);
-  }
-
   function zoomIn() {
     if (zoomed || animating) return;
     animating = true;
@@ -807,14 +799,9 @@
     document.body.classList.add('zoomed');
     ipod.style.transition = 'transform 1.4s cubic-bezier(.25,.7,.25,1)';
     ipod.style.transform = zoomTransform();
-    hint.classList.remove('show');
     setTimeout(() => {
       zoomed = true;
       animating = false;
-      if (!sessionStorageGet('hinted')) {
-        setHint('drag around the wheel · click outside to put it down', 5000);
-        sessionStorageSet('hinted', '1');
-      }
     }, 1400);
   }
   function zoomOut() {
@@ -827,12 +814,9 @@
     ipod.style.transition = 'transform 1.6s cubic-bezier(.4,0,.2,1)';
     p = target = 1;
     ipod.style.transform = restTransform(1);
-    hint.classList.remove('show');
     setTimeout(() => { animating = false; }, 1600);
   }
 
-  function sessionStorageGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
-  function sessionStorageSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
 
   if (isTouch) {
     // Phones: no cursor to summon it with, so the iPod is already up

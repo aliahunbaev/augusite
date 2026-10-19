@@ -138,8 +138,11 @@ window.SITE = {
 
   about: {
     photo: 'assets/photos/augu-24.webp',
+    // Draft written from his release history; swap in Augu's own words.
     bio: [
-      // TODO: a short bio from Augu, one paragraph per string
+      'Augu makes R&B.',
+      'He put out his first single, “4Door”, in December 2023. In August 2024 came In Blue., a seven-track debut that runs from “feel.” to “moss”.',
+      'The singles haven’t stopped since: “PIG”, “MaLuv”, “Tears”, “Broke Bike” with Kaleb Reyna, “SawYaCarr/douluvme?”, and most recently “FuckTheWorld (Demo)”. He also appears on Kaleb Reyna’s “GIVE IT AWAY” and grant parris & oku’s “empath”.',
     ],
     credit: '',                            // e.g. 'website by ...'
   },

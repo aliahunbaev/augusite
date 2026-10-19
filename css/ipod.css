@@ -397,24 +397,7 @@ body.zoomed .backdrop {
 }
 .center:active { background: rgba(0, 0, 0, 0.08); }
 
-/* ---------- Hint & consent ---------- */
-
-.hint {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 18px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 13px;
-  letter-spacing: 0.3px;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  z-index: 6;
-}
-.hint.show { opacity: 1; }
+/* ---------- Consent bar ---------- */
 
 .consent {
   position: fixed;

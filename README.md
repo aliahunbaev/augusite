@@ -58,6 +58,12 @@ placeholder.
 - Phones: the iPod is already up, ready to use
 - Deep links: `/#music`, `/#photos`, `/#merch`, `/#shows`, `/#contact`...
 
+## After changing code
+
+Bump the `?v=` number on the CSS and JS links in `index.html` (all of them,
+same number) so returning visitors don't mix a new page with old cached
+scripts.
+
 ## Run locally
 
 ```bash
