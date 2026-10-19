@@ -9,11 +9,11 @@
   const hdrPlay = $('hdrPlay');
   const wheel = $('wheel');
 
-  // The device within the hand photo (assets/hand.webp, 1024 x 1536), in
+  // The phone within the hand photo (assets/hand.webp, 1090 x 1348), in
   // photo pixels: its centre, its size along its own axes, and how far it
-  // leans. Raising the iPod turns it upright by TILT about that centre.
-  const DEV = { cx: 458, cy: 408, w: 221, h: 364 };
-  const TILT = 11.8;
+  // leans. Raising it turns it upright by TILT about that centre.
+  const DEV = { cx: 337, cy: 422, w: 400, h: 790 };
+  const TILT = -9.5;
   const isTouch = matchMedia('(hover: none) and (pointer: coarse), (max-width: 600px)').matches;
 
 
@@ -317,14 +317,13 @@
   /* ---------------- Menus ---------------- */
 
   const hasVideos = () => D.youtubeLive || (C.videos || []).length;
-  const hasMerch = () => D.cart.enabled || (C.merch || []).length;
 
   function mainMenu() {
     const all = [
       { label: 'Music', chev: true, run: () => push(musicMenu()) },
       { label: 'Photos', chev: true, show: () => (C.photos || []).length, run: () => push(photosScreen()) },
       { label: 'Videos', chev: true, show: hasVideos, run: () => push(videosMenu()) },
-      { label: 'Merch', chev: true, show: hasMerch, run: () => push(merchScreen()) },
+      { label: 'Merch', chev: true, run: () => push(merchScreen()) },
       { label: 'Shows', chev: true, run: () => push(showsMenu()) },
       { label: 'News', chev: true, show: () => (C.news || []).length, run: () => push(newsMenu()) },
       { label: 'About', chev: true, run: () => push(aboutScreen()) },
@@ -771,7 +770,7 @@
   // Raised: the device fills most of the window, upright
   // (fitted by the device's bounding box at its raised angle)
   function zoomScale() {
-    const t = TILT * Math.PI / 180;
+    const t = Math.abs(TILT) * Math.PI / 180;
     const bw = DEV.w * Math.cos(t) + DEV.h * Math.sin(t);
     const bh = DEV.h * Math.cos(t) + DEV.w * Math.sin(t);
     return Math.min((innerHeight * 0.94) / bh, (innerWidth * 0.94) / bw, 3.2);
@@ -794,14 +793,13 @@
   // bottom of the click wheel runs just off the frame, and still leaning a
   // couple of degrees as a hand would hold it. Phones show the whole device.
   const RAISED = { height: 0.68, top: 0.36, lean: 2.3 };
-  const DEV_TOP = 205; // top edge of the device in the photo
   function zoomTransform() {
     if (isTouch) return pose(innerWidth / 2, innerHeight / 2, TILT, zoomScale());
-    const t = TILT * Math.PI / 180;
+    const t = Math.abs(TILT) * Math.PI / 180;
     const bw = DEV.w * Math.cos(t) + DEV.h * Math.sin(t);
     const s = Math.min((innerHeight * RAISED.height) / DEV.h, (innerWidth * 0.9) / bw, 3.2);
-    const y = innerHeight * RAISED.top + (DEV.cy - DEV_TOP) * s;
-    return pose(innerWidth / 2, y, TILT - RAISED.lean, s);
+    const y = innerHeight * RAISED.top + (DEV.h / 2) * s;
+    return pose(innerWidth / 2, y, TILT - Math.sign(TILT) * RAISED.lean, s);
   }
 
   function zoomIn() {
@@ -870,7 +868,7 @@
     document.addEventListener('click', (e) => {
       if (animating || e.target.closest('.consent')) return;
       if (!zoomed) { zoomIn(); return; }
-      if (!e.target.closest('.screen, .wheel')) zoomOut();
+      if (!e.target.closest('.face')) zoomOut();
     });
 
     addEventListener('resize', () => {
