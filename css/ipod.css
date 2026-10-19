@@ -342,6 +342,8 @@ body:not(.zoomed) .wheel { pointer-events: none; }
   -webkit-mask-image: linear-gradient(to bottom, transparent 55%, #000);
   mask-image: linear-gradient(to bottom, transparent 55%, #000);
 }
+.cf.no-cap .cf-stage { bottom: 0; }
+.cf.no-cap .cf-cap { display: none; }
 .cf-cap {
   position: absolute;
   left: 0;

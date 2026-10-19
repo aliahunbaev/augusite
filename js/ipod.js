@@ -247,7 +247,7 @@
         if (this.loading) { el.innerHTML = '<div class="empty dark"><span class="spinner"></span>Loading…</div>'; return; }
         if (!this.items.length) { el.innerHTML = `<div class="empty dark">${esc(this.error || opts.empty || 'Nothing here yet')}</div>`; return; }
         this.sel = Math.min(this.sel, this.items.length - 1);
-        el.innerHTML = `<div class="cf"><div class="cf-stage">${this.items.map((it, i) =>
+        el.innerHTML = `<div class="cf${opts.caption === false ? ' no-cap' : ''}"><div class="cf-stage">${this.items.map((it, i) =>
           `<div class="cf-item" data-i="${i}" style="width:${SIZE}px;height:${SIZE}px">
              <div class="cf-face"></div><div class="cf-refl"></div>
            </div>`).join('')}</div>
@@ -433,9 +433,10 @@
 
   function photosScreen() {
     const items = C.photos.map((p, i) => ({
-      art: p.thumb || p.full || '', title: '', sub: `${i + 1} of ${C.photos.length}`, seed: 'photo' + i, label: '',
+      art: p.thumb || p.full || '', title: '', sub: '', seed: 'photo' + i, label: '',
     }));
     return coverFlow('Photos', items, {
+      caption: false,
       onSelect: (i, flow) => push(photoView(i, flow)),
     });
   }
