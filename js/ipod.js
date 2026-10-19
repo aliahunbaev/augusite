@@ -330,7 +330,7 @@
       { label: 'About', chev: true, run: () => push(aboutScreen()) },
       { label: 'Contact', chev: true, run: () => push(contactMenu()) },
     ].filter((it) => !it.show || it.show());
-    return listScreen(C.artist, all);
+    return listScreen(`${C.artist}'s iPod`, all);
   }
 
   function musicMenu() {
@@ -788,8 +788,19 @@
     const c = restCentre(q);
     return pose(c.x, c.y, 0, restScale(q));
   }
+  // Raised on desktop: held out in front of you rather than filling the
+  // window. About two thirds of the window tall, set low enough that the
+  // bottom of the click wheel runs just off the frame, and still leaning a
+  // couple of degrees as a hand would hold it. Phones show the whole device.
+  const RAISED = { height: 0.68, top: 0.36, lean: 2.3 };
+  const DEV_TOP = 205; // top edge of the device in the photo
   function zoomTransform() {
-    return pose(innerWidth / 2, innerHeight / 2, TILT, zoomScale());
+    if (isTouch) return pose(innerWidth / 2, innerHeight / 2, TILT, zoomScale());
+    const t = TILT * Math.PI / 180;
+    const bw = DEV.w * Math.cos(t) + DEV.h * Math.sin(t);
+    const s = Math.min((innerHeight * RAISED.height) / DEV.h, (innerWidth * 0.9) / bw, 3.2);
+    const y = innerHeight * RAISED.top + (DEV.cy - DEV_TOP) * s;
+    return pose(innerWidth / 2, y, TILT - RAISED.lean, s);
   }
 
   function zoomIn() {

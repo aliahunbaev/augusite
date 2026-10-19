@@ -11,7 +11,7 @@
   <!-- <meta property="og:image" content="https://YOUR-DOMAIN/assets/og-image.jpg"> 1200x630 -->
   <meta name="twitter:card" content="summary_large_image">
 
-  <script src="js/content.js?v=3"></script>
+  <script src="js/content.js?v=4"></script>
 
   <!-- Every visit is dealt one backdrop before the page paints, so only the
        chosen photo is ever downloaded. A shuffled "bag" in localStorage shows
@@ -74,7 +74,7 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="css/ipod.css?v=3">
+  <link rel="stylesheet" href="css/ipod.css?v=4">
 </head>
 <body>
   <div class="backdrop" id="backdrop"></div>
@@ -87,9 +87,15 @@
 
     <div class="screen">
       <div class="screen-header">
-        <span class="hdr-play" id="hdrPlay"></span>
         <span class="hdr-title" id="hdrTitle"></span>
-        <span class="hdr-battery"><i></i></span>
+        <span class="hdr-status">
+          <span class="hdr-play" id="hdrPlay"></span>
+          <svg class="hdr-battery" width="18" height="9" viewBox="0 0 20 10" aria-hidden="true">
+            <rect x="0.5" y="0.5" width="17" height="9" rx="1.5" fill="none" stroke="#333"/>
+            <rect x="18" y="3" width="2" height="4" fill="#333"/>
+            <rect x="2" y="2" width="3" height="6" fill="#e5352b"/>
+          </svg>
+        </span>
       </div>
       <div class="screen-body" id="screenBody"></div>
     </div>
@@ -103,7 +109,7 @@
     </div>
   </div>
 
-  <script src="js/integrations.js?v=3"></script>
-  <script src="js/ipod.js?v=3"></script>
+  <script src="js/integrations.js?v=4"></script>
+  <script src="js/ipod.js?v=4"></script>
 </body>
 </html>
