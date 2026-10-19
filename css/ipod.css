@@ -88,6 +88,26 @@ body.zoomed .backdrop {
   background: linear-gradient(160deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 40%);
 }
 
+/* The screen is only on while the iPod is raised. Put down, it fades to
+   black (under the glass glare) and ignores clicks; raised, it lights up
+   as the device arrives. */
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: #050506;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+body.zoomed .screen::before {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.9s;
+}
+body:not(.zoomed) .screen,
+body:not(.zoomed) .wheel { pointer-events: none; }
+
 .screen-header {
   flex: 0 0 20px;
   display: flex;
