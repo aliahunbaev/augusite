@@ -15,26 +15,20 @@ js/content.js        ALL content and settings — the only file you edit
 js/integrations.js   YouTube / Bandsintown / Shopify / GA4, each optional
 js/ipod.js           screens, click wheel, audio, pick-up animation
 css/ipod.css         the iPod and its screens
-assets/hand.webp     an empty hand, posed as if holding a phone
-assets/fingers.webp  the thumb tip that overlaps the glass
+assets/hand.webp     the photo of a hand holding the iPod
 assets/              backdrops, covers, music, photos (+ photos/thumb), merch
 ```
 
 ## The hand photo
 
-The hand is `assets/hand.webp`, a 1090×1348 photo of an empty hand (transparent
-background) posed as if holding a phone. The iPod is drawn in CSS where the
-phone was: a flat 240×500 `.face` (the phone's screen area) with a `.body`
-reaching out to the case edge, warped onto the photo with a `matrix3d`
-perspective transform. `fingers.webp` (the thumb tip that crossed the phone)
-goes back on top. All are in the photo's pixels:
+The iPod is `assets/hand.webp`, a 1024×1536 photo with a transparent
+background. The live screen and an invisible click wheel are laid over the
+device in it, positioned in the photo's own pixels:
 
-- `.face`, `.body` and `.fingers` in `css/ipod.css` sit where the phone was
+- `.screen` and `.wheel` in `css/ipod.css` cover the photo's screen and wheel
 - `DEV` and `TILT` in `js/ipod.js` give the device's centre, size and lean,
   which set where it rests in the lap and how it turns upright when raised
 
-The geometry and thumb came from two aligned shots, one holding a phone and
-one with the same hand empty: pixels that match in both are hand in front.
 If you swap in a different photo, re-measure those numbers.
 
 ## Content

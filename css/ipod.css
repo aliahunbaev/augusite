@@ -43,8 +43,8 @@ body.zoomed .backdrop {
   position: fixed;
   left: 0;
   top: 0;
-  width: 1090px;
-  height: 1348px;
+  width: 1024px;
+  height: 1536px;
   transform-origin: 0 0;
   will-change: transform;
   pointer-events: none;
@@ -58,77 +58,19 @@ body.zoomed .backdrop {
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.35));
 }
 
-/* The phone's screen, as a flat 240 x 500 face warped onto the photo. The
-   matrix maps the face's corners onto the glass's measured corners (225,30)
-   (569,86) (454,805) (98,765). The iPod body reaches past it to cover where
-   the phone's case was. */
-.face {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 240px;
-  height: 500px;
-  transform-origin: 0 0;
-  transform: matrix3d(1.4676, 0.241244, 0, 0.000102245, -0.256982, 1.40547, 0, -5.71686e-05, 0, 0, 1, 0, 227.169, 35.8781, 0, 1);
-}
-body.zoomed .face { pointer-events: auto; }
-
-/* White plastic front with a polished edge */
-.body {
-  position: absolute;
-  left: -15px;
-  top: -13px;
-  width: 270px;
-  height: 532px;
-  border-radius: 34px;
-  background:
-    linear-gradient(115deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 35%),
-    linear-gradient(180deg, #f7f6f3 0%, #ecebe7 55%, #dedcd7 100%);
-  box-shadow:
-    inset 0 0 0 1.5px rgba(255, 255, 255, 0.9),
-    inset 0 0 0 3px #c9c7c2,
-    inset 0 -6px 10px rgba(0, 0, 0, 0.08),
-    0 10px 22px rgba(0, 0, 0, 0.35),
-    0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-/* The thumb tip that crosses the glass, in front of everything */
-.fingers {
-  position: absolute;
-  left: 534px;
-  top: 187px;
-  width: 42px;
-  height: 150px;
-}
-
-/* The screen is only on while the iPod is raised. Put down, it fades to
-   black and ignores clicks; raised, it lights up as the device arrives. */
-.screen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 40;
-  pointer-events: none;
-  background: #0b0c0d;
-  opacity: 1;
-  transition: opacity 0.45s ease;
-}
-body.zoomed .screen::before {
-  opacity: 0;
-  transition: opacity 0.6s ease 0.9s;
-}
-
-/* The iPod screen: a 258 x 197 layout scaled onto the top of the face */
+/* Over the photo's dark screen: measured 187 x 143 px, centred at
+   (435, 310), tilted -11.8deg. The content keeps a 258 x 197 layout and is
+   scaled down onto it, a hair oversized so no dark edge peeks out. */
 .screen {
   --lcd: #bcc7ca;
   position: absolute;
-  left: 14px;
-  top: 26px;
+  left: 307px;
+  top: 212px;
   width: 258px;
   height: 197px;
-  transform: scale(0.8217);
-  transform-origin: 0 0;
-  box-shadow: 0 0 0 3px #26272a, 0 0 0 4px #b9b7b2;
+  transform: rotate(-11.8deg) scale(0.745);
+  transform-origin: 50% 50%;
+  pointer-events: auto;
   border-radius: 4px;
   overflow: hidden;
   background: var(--lcd);
@@ -153,6 +95,25 @@ body.zoomed .screen::before {
     radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.18) 100%);
 }
 
+/* The screen is only on while the iPod is raised. Put down, it fades to
+   black (under the glass glare) and ignores clicks; raised, it lights up
+   as the device arrives. */
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: #050506;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+body.zoomed .screen::before {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.9s;
+}
+body:not(.zoomed) .screen,
+body:not(.zoomed) .wheel { pointer-events: none; }
 
 .screen-header {
   flex: 0 0 20px;
@@ -440,49 +401,36 @@ body.zoomed .screen::before {
 
 /* ---------- Click wheel ---------- */
 
-/* Grey click wheel, white centre button */
+/* Invisible hit areas over the wheel in the photo: centred at (475, 481),
+   about 142 px across, with the centre button 50 px. */
 .wheel {
   position: absolute;
-  left: 30px;
-  top: 270px;
-  width: 180px;
-  height: 180px;
+  left: 404px;
+  top: 410px;
+  width: 142px;
+  height: 142px;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 30%, #c9c9cb, #b3b3b6 75%);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18), 0 1px 0 rgba(255, 255, 255, 0.8);
+  pointer-events: auto;
   touch-action: none;
   cursor: grab;
 }
 .wheel:active { cursor: grabbing; }
-.wl {
-  position: absolute;
-  display: flex;
-  color: #f4f4f4;
-  fill: #f4f4f4;
-  font: 600 11px/1 -apple-system, "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.06em;
-  pointer-events: none;
-}
-.wl-menu { top: 15px; left: 50%; transform: translateX(-50%); }
-.wl-play { bottom: 15px; left: 50%; transform: translateX(-50%); }
-.wl-prev { left: 13px; top: 50%; transform: translateY(-50%); }
-.wl-next { right: 13px; top: 50%; transform: translateY(-50%); }
+.wl { display: none; }
 
 .center {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 66px;
-  height: 66px;
-  margin: -33px 0 0 -33px;
+  width: 50px;
+  height: 50px;
+  margin: -25px 0 0 -25px;
   border-radius: 50%;
   border: 0;
   padding: 0;
-  background: radial-gradient(circle at 50% 30%, #fbfbf9, #e9e8e4);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), inset 0 -1px 2px rgba(0, 0, 0, 0.06);
+  background: transparent;
   cursor: pointer;
 }
-.center:active { background: #dddcd8; }
+.center:active { background: rgba(0, 0, 0, 0.08); }
 
 /* ---------- Consent bar ---------- */
 
