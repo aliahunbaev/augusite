@@ -339,7 +339,7 @@
       sub: [a.year, `${a.tracks.length} ${a.tracks.length === 1 ? 'song' : 'songs'}`].filter(Boolean).join(' · '),
       chev: true, thumb: a.cover, run: () => push(albumMenu(a)),
     }));
-    const s = listScreen('Music', albums, 'No music yet', { artwork: true });
+    const s = listScreen('Music', albums, 'No music yet');
     // "Now Playing" leads the menu once something has been played
     const render = s.render.bind(s);
     s.render = (el) => {
@@ -472,13 +472,13 @@
         label: p.title, chev: true, thumb: p.thumb,
         run: () => push(videoList(p.title, () => D.playlistItems(p.id))),
       })),
-    ]), 'No videos yet', { artwork: true });
+    ]), 'No videos yet');
   }
 
   function videoList(title, load) {
     return asyncList(title, () => load().then((vids) => vids.map((v) => ({
       label: v.title, thumb: v.thumb, run: () => push(videoScreen(v)),
-    }))), 'No videos yet', { artwork: true });
+    }))), 'No videos yet');
   }
 
   function videoScreen(v) {
