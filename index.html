@@ -11,7 +11,7 @@
   <!-- <meta property="og:image" content="https://YOUR-DOMAIN/assets/og-image.jpg"> 1200x630 -->
   <meta name="twitter:card" content="summary_large_image">
 
-  <script src="js/content.js?v=7"></script>
+  <script src="js/content.js?v=8"></script>
 
   <!-- Every visit is dealt one backdrop before the page paints, so only the
        chosen photo is ever downloaded. A shuffled "bag" in localStorage shows
@@ -74,19 +74,20 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="css/ipod.css?v=7">
+  <link rel="stylesheet" href="css/ipod.css?v=8">
 </head>
 <body>
   <div class="backdrop" id="backdrop"></div>
 
-  <!-- A hand holding a phone. The iPod (screen and click wheel) is drawn on
-       the phone's glass, warped to its perspective; the glass's own cracks
-       and reflections go back over it, then the thumb that overlaps the
-       screen. All in the photo's pixel coordinates, so it moves as one. -->
+  <!-- An empty hand, shot in the same pose as one holding a phone. The iPod
+       is drawn where the phone was, warped to its perspective, and the thumb
+       that crossed the phone goes back on top. All in the photo's pixel
+       coordinates, so it moves as one. -->
   <div class="ipod" id="ipod">
-    <img class="hand" src="assets/hand.webp?v=7" alt="" draggable="false" fetchpriority="high">
+    <img class="hand" src="assets/hand.webp?v=8" alt="" draggable="false" fetchpriority="high">
 
     <div class="face">
+      <div class="body"></div>
     <div class="screen">
       <div class="screen-header">
         <span class="hdr-title" id="hdrTitle"></span>
@@ -110,11 +111,10 @@
       <button class="center" id="center" aria-label="Select"></button>
     </div>
     </div>
-    <img class="glass" src="assets/glass.webp?v=7" alt="" draggable="false">
-    <img class="fingers" src="assets/fingers.webp?v=7" alt="" draggable="false">
+    <img class="fingers" src="assets/fingers.webp?v=8" alt="" draggable="false">
   </div>
 
-  <script src="js/integrations.js?v=7"></script>
-  <script src="js/ipod.js?v=7"></script>
+  <script src="js/integrations.js?v=8"></script>
+  <script src="js/ipod.js?v=8"></script>
 </body>
 </html>

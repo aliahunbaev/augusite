@@ -58,9 +58,10 @@ body.zoomed .backdrop {
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.35));
 }
 
-/* The phone's glass, as a flat 240 x 500 face warped onto the photo. The
+/* The phone's screen, as a flat 240 x 500 face warped onto the photo. The
    matrix maps the face's corners onto the glass's measured corners (225,30)
-   (569,86) (454,805) (98,765), pulled in 1.5% so no case edge is covered. */
+   (569,86) (454,805) (98,765). The iPod body reaches past it to cover where
+   the phone's case was. */
 .face {
   position: absolute;
   left: 0;
@@ -69,42 +70,28 @@ body.zoomed .backdrop {
   height: 500px;
   transform-origin: 0 0;
   transform: matrix3d(1.4676, 0.241244, 0, 0.000102245, -0.256982, 1.40547, 0, -5.71686e-05, 0, 0, 1, 0, 227.169, 35.8781, 0, 1);
-  border-radius: 26px;
-  overflow: hidden;
-  background: radial-gradient(ellipse 120% 70% at 50% 30%, #121214, #050506 70%);
-  pointer-events: auto;
+}
+body.zoomed .face { pointer-events: auto; }
+
+/* White plastic front with a polished edge */
+.body {
+  position: absolute;
+  left: -15px;
+  top: -13px;
+  width: 270px;
+  height: 532px;
+  border-radius: 34px;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 35%),
+    linear-gradient(180deg, #f7f6f3 0%, #ecebe7 55%, #dedcd7 100%);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.9),
+    inset 0 0 0 3px #c9c7c2,
+    inset 0 -6px 10px rgba(0, 0, 0, 0.08),
+    0 10px 22px rgba(0, 0, 0, 0.35),
+    0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* The display is only on while the phone is raised. Put down, it fades to
-   black and ignores clicks; raised, it lights up as the device arrives. */
-.face::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  background: #000;
-  opacity: 1;
-  transition: opacity 0.45s ease;
-}
-body.zoomed .face::before {
-  opacity: 0;
-  transition: opacity 0.6s ease 0.9s;
-}
-body:not(.zoomed) .face { pointer-events: none; }
-
-/* The photo's own cracks and reflections, laid back over the lit display */
-.glass {
-  position: absolute;
-  left: 94px;
-  top: 29px;
-  width: 479px;
-  height: 778px;
-  mix-blend-mode: screen;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
-body.zoomed .glass { opacity: 0.7; transition: opacity 0.6s ease 0.9s; }
 /* The thumb tip that crosses the glass, in front of everything */
 .fingers {
   position: absolute;
@@ -112,6 +99,23 @@ body.zoomed .glass { opacity: 0.7; transition: opacity 0.6s ease 0.9s; }
   top: 187px;
   width: 42px;
   height: 150px;
+}
+
+/* The screen is only on while the iPod is raised. Put down, it fades to
+   black and ignores clicks; raised, it lights up as the device arrives. */
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: #0b0c0d;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+body.zoomed .screen::before {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.9s;
 }
 
 /* The iPod screen: a 258 x 197 layout scaled onto the top of the face */
@@ -124,6 +128,7 @@ body.zoomed .glass { opacity: 0.7; transition: opacity 0.6s ease 0.9s; }
   height: 197px;
   transform: scale(0.8217);
   transform-origin: 0 0;
+  box-shadow: 0 0 0 3px #26272a, 0 0 0 4px #b9b7b2;
   border-radius: 4px;
   overflow: hidden;
   background: var(--lcd);
@@ -435,16 +440,16 @@ body.zoomed .glass { opacity: 0.7; transition: opacity 0.6s ease 0.9s; }
 
 /* ---------- Click wheel ---------- */
 
-/* A black iPod's wheel, drawn below the screen */
+/* Grey click wheel, white centre button */
 .wheel {
   position: absolute;
   left: 30px;
-  top: 252px;
+  top: 270px;
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 35%, #2e2e31, #1b1b1d 70%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  background: radial-gradient(circle at 50% 30%, #c9c9cb, #b3b3b6 75%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18), 0 1px 0 rgba(255, 255, 255, 0.8);
   touch-action: none;
   cursor: grab;
 }
@@ -452,8 +457,8 @@ body.zoomed .glass { opacity: 0.7; transition: opacity 0.6s ease 0.9s; }
 .wl {
   position: absolute;
   display: flex;
-  color: #a9a9ad;
-  fill: #a9a9ad;
+  color: #f4f4f4;
+  fill: #f4f4f4;
   font: 600 11px/1 -apple-system, "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 0.06em;
   pointer-events: none;
@@ -473,11 +478,11 @@ body.zoomed .glass { opacity: 0.7; transition: opacity 0.6s ease 0.9s; }
   border-radius: 50%;
   border: 0;
   padding: 0;
-  background: radial-gradient(circle at 50% 30%, #18181a, #0b0b0c);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  background: radial-gradient(circle at 50% 30%, #fbfbf9, #e9e8e4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), inset 0 -1px 2px rgba(0, 0, 0, 0.06);
   cursor: pointer;
 }
-.center:active { background: #050506; }
+.center:active { background: #dddcd8; }
 
 /* ---------- Consent bar ---------- */
 
