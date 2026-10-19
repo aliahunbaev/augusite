@@ -43,8 +43,8 @@ body.zoomed .backdrop {
   position: fixed;
   left: 0;
   top: 0;
-  width: 1024px;
-  height: 1536px;
+  width: 1075px;
+  height: 1298px;
   transform-origin: 0 0;
   will-change: transform;
   pointer-events: none;
@@ -58,18 +58,18 @@ body.zoomed .backdrop {
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.35));
 }
 
-/* Over the photo's dark screen: measured 187 x 143 px, centred at
-   (435, 310), tilted -11.8deg. The content keeps a 258 x 197 layout and is
-   scaled down onto it, a hair oversized so no dark edge peeks out. */
+/* Over the photo's dark screen, whose corners are (185,36) (564,89)
+   (527,373) (149,320). The content keeps a 258 x 197 layout and is mapped
+   onto those corners, a hair oversized so no dark edge peeks out. */
 .screen {
   --lcd: #bcc7ca;
   position: absolute;
-  left: 307px;
-  top: 212px;
+  left: 0;
+  top: 0;
   width: 258px;
   height: 197px;
-  transform: rotate(-11.8deg) scale(0.745);
-  transform-origin: 50% 50%;
+  transform: matrix(1.47557, 0.204265, -0.183849, 1.45505, 183.286, 34.8175);
+  transform-origin: 0 0;
   pointer-events: auto;
   border-radius: 4px;
   overflow: hidden;
@@ -399,16 +399,26 @@ body:not(.zoomed) .wheel { pointer-events: none; }
   letter-spacing: -0.5px;
 }
 
+/* The thumb tip that crosses the screen's right edge, back on top */
+.thumb {
+  position: absolute;
+  left: 513px;
+  top: 134px;
+  width: 59px;
+  height: 171px;
+  z-index: 3;
+}
+
 /* ---------- Click wheel ---------- */
 
-/* Invisible hit areas over the wheel in the photo: centred at (475, 481),
-   about 142 px across, with the centre button 50 px. */
+/* Invisible hit areas over the wheel in the photo: centred at (307, 557),
+   about 278 px across, with the centre button 100 px. */
 .wheel {
   position: absolute;
-  left: 404px;
-  top: 410px;
-  width: 142px;
-  height: 142px;
+  left: 168px;
+  top: 418px;
+  width: 278px;
+  height: 278px;
   border-radius: 50%;
   pointer-events: auto;
   touch-action: none;
@@ -421,9 +431,9 @@ body:not(.zoomed) .wheel { pointer-events: none; }
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 50px;
-  height: 50px;
-  margin: -25px 0 0 -25px;
+  width: 100px;
+  height: 100px;
+  margin: -50px 0 0 -50px;
   border-radius: 50%;
   border: 0;
   padding: 0;

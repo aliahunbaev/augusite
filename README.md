@@ -15,17 +15,22 @@ js/content.js        ALL content and settings — the only file you edit
 js/integrations.js   YouTube / Bandsintown / Shopify / GA4, each optional
 js/ipod.js           screens, click wheel, audio, pick-up animation
 css/ipod.css         the iPod and its screens
-assets/hand.webp     the photo of a hand holding the iPod
+assets/hand.webp     the photo of Augu's hand holding the iPod
+assets/thumb.webp    his thumb tip, drawn over the screen's edge
 assets/              backdrops, covers, music, photos (+ photos/thumb), merch
 ```
 
 ## The hand photo
 
-The iPod is `assets/hand.webp`, a 1024×1536 photo with a transparent
-background. The live screen and an invisible click wheel are laid over the
-device in it, positioned in the photo's own pixels:
+The iPod is `assets/hand.webp`, a 1075×1298 photo of Augu's hand holding a
+silver iPod classic, with a transparent background. The live screen and an
+invisible click wheel are laid over the device in it, positioned in the
+photo's own pixels, and `assets/thumb.webp` (the thumb tip that crosses the
+screen) goes back on top:
 
-- `.screen` and `.wheel` in `css/ipod.css` cover the photo's screen and wheel
+- `.screen`, `.wheel` and `.thumb` in `css/ipod.css` cover the photo's screen,
+  wheel and thumb; the screen's `matrix()` maps it onto the four measured
+  corners
 - `DEV` and `TILT` in `js/ipod.js` give the device's centre, size and lean,
   which set where it rests in the lap and how it turns upright when raised
 
